@@ -1,0 +1,122 @@
+type: picture-elements
+image: local/images/Tesla/backgrounds/background_square.png
+elements:
+  - type: state-label
+    entity: binary_sensor.tesla_model3_online
+    prefix: null
+    style:
+      top: 6%
+      left: 50%
+      font-size: 18px
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+  - type: image
+    title: Car
+    state_image:
+      heat_cool: local/images/Tesla/models/3/blue/side_heating.png
+      'off': local/images/Tesla/models/3/blue/side.png
+    style:
+      top: 50%
+      left: 50%
+      width: 100%
+    entity: climate.tesla_model3_hvac_climate_system
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+  - type: state-label
+    entity: sensor.tesla_model3_battery
+    style:
+      top: 10%
+      left: 10%
+      font-size: 18px
+  - type: conditional
+    conditions:
+      - entity: sensor.tesla_model3_shift_state
+        state: P
+    elements:
+      - type: state-label
+        entity: sensor.blank
+        prefix: Parked
+        style:
+          top: 15%
+          left: 11%
+          font-size: 15px
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+  - type: conditional
+    conditions:
+      - entity: sensor.tesla_model3_shift_state
+        state: D
+    elements:
+      - type: state-label
+        entity: sensor.blank
+        prefix: Driving
+        style:
+          top: 17%
+          left: 10.8%
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+  - type: image
+    title: Door Lock
+    state_image:
+      locked: local/images/Tesla/buttons/lock.jpg
+      unlocked: local/images/Tesla/buttons/unlock.jpg
+    style:
+      top: 12%
+      right: 0%
+      width: 40px
+      height: 40px
+    tap_action:
+      action: toggle
+    entity: lock.tesla_model3_doors
+    double_tap_action: none
+    hold_action: none
+  - type: state-label
+    entity: sensor.blank
+    prefix: Inside
+    style:
+      bottom: 9%
+      right: '-0.5%'
+      font-size: 15px
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+  - type: state-label
+    entity: sensor.tesla_model3_temperature_inside
+    style:
+      bottom: 3%
+      right: '-2%'
+      font-size: 15px
+  - type: image
+    title: Climate
+    state_image:
+      heat_cool: local/images/Tesla/buttons/climate_on.png
+      'off': local/images/Tesla/buttons/climate_off.png
+    style:
+      bottom: '-3.3%'
+      left: 15%
+      width: 74px
+      height: 74px
+    tap_action:
+      action: toggle
+    entity: climate.tesla_model3_hvac_climate_system
+    double_tap_action: none
+    hold_action: none
+  - type: image
+    title: Vent
+    state_image:
+      open: local/images/Tesla/buttons/windows_open.png
+      closed: local/images/Tesla/buttons/windows_closed.png
+    style:
+      bottom: '-3%'
+      left: 30%
+      width: 74px
+      height: 74px
+    tap_action:
+      action: toggle
+    entity: cover.tesla_model3_windows
+    double_tap_action: none
+    hold_action: none
